@@ -56,6 +56,7 @@ export const PaymentOptions = styled.div`
 
   label {
     flex: 1;
+    min-width: 0;
     background:${props => props.theme['base-button']};
     color: ${props => props.theme['base-text']};
     padding: 1rem;

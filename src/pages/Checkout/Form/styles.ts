@@ -55,9 +55,11 @@ gap: 1rem;
     font-size: 0.875rem;
     color: ${props => props.theme['base-label']};
     flex: 1;
+    min-width: 0;
 }
 .cep {
     max-width: 200px;
+    flex: 0 0 200px;
   }
 
   .full {
@@ -67,15 +69,19 @@ gap: 1rem;
   .row {
     display: flex;
     gap: 0.75rem;
+    flex-wrap: wrap;
+    align-items: center;
   }
 
   .uf {
     max-width: 60px;
+    flex: 0 0 60px;
   }
 
   .complemento-wrapper {
     position: relative;
     flex: 1;
+    min-width: 0;
 
     input {
       width: 100%;
@@ -90,6 +96,12 @@ gap: 1rem;
       font-style: italic;
       color: ${props => props.theme['base-label']};
     }
+  }
+
+  @media (max-width: 480px) {
+    .row { flex-direction: column; align-items: stretch; gap: 0.5rem; }
+    .cep, .uf { max-width: none; flex: 1 1 100%; }
+    input { width: 100%; }
   }
 `
 
