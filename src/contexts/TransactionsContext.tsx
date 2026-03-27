@@ -30,11 +30,14 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
     const [counts, setCount] = useState<{ [id: number]: number }>({});
 
     async function loadTransactions() {
-        const response = await fetch('http://localhost:3001/transactions')
+        try {
+        const response = await fetch('http://localhost:3002/transactions')
         const data = await response.json();
 
-        setTransactions(data);
-    }
+        setTransactions(data)}catch(error) {
+    console.error('Erro ao buscar transações:', error)
+  }
+}
 
 
 
