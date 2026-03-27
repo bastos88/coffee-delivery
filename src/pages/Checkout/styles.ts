@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
 export const CheckOutContainer = styled.section`
-  margin: 4rem 10rem;
+  margin: 4rem 0;
   display: grid;
   grid-template-columns: 60% 40%;
   width: 100%;
-  height: 40rem;
+  min-height: 40rem;
   gap:2.25rem;
   max-width: 1200px;
   h1 {
@@ -13,5 +13,11 @@ export const CheckOutContainer = styled.section`
         font-weight: bold;
         font-size: 20px;  
         line-height: 1.3;
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    gap: 1rem;
   }
 `

@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import { createContext, ReactNode, useEffect, useState } from "react";
 interface Transaction {
     id: number;
@@ -30,11 +31,14 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
     const [counts, setCount] = useState<{ [id: number]: number }>({});
 
     async function loadTransactions() {
+        try {
         const response = await fetch('http://localhost:3001/transactions')
         const data = await response.json();
 
-        setTransactions(data);
-    }
+        setTransactions(data)}catch(error) {
+    console.error('Erro ao buscar transações:', error)
+  }
+}
 
 
 

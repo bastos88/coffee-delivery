@@ -2,12 +2,12 @@ import styled from "styled-components";
 
 export const Detail = styled.div`
   display: flex;
-  width: 23.75rem;
+  width: 100%;
+  max-width: 23.75rem;
   justify-content: space-between;
   align-items: flex-start;
   padding: 1rem 0;
   border-bottom: 1px solid ${props => props.theme["base-button"]};
-  width: 100%;
 
   img {
     width: 5rem;
@@ -15,6 +15,10 @@ export const Detail = styled.div`
     object-fit: cover;
     border-radius: 8px;
     margin-right: 1rem;
+  }
+
+  @media (max-width: 480px) {
+    img { width: 3.5rem; height: 3.5rem; }
   }
 
   > div {

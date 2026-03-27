@@ -3,7 +3,8 @@ import styled from "styled-components";
 export const IntroContainer = styled.div`
     display: flex;
     justify-content: space-between;
-    margin: 5.75rem 10rem;
+    margin: 5.75rem 0;
+    align-items: center;
  
     h1 {
         font-size: 3rem;
@@ -31,7 +32,7 @@ export const IntroContainer = styled.div`
     li {
         display: flex;
         align-items: center;
-        width: 40%;
+        width: 45%;
         margin-top: 1rem;
        
     }
@@ -71,12 +72,21 @@ export const IntroContainer = styled.div`
         font-weight: lighter;
         line-height: 1.6;
     }
+    @media (max-width: 768px) {
+        flex-direction: column;
+        text-align: center;
+        h1 { font-size: 2rem; }
+        span { font-size: 0.95rem; }
+        img { max-width: 100%; height: auto; margin-top: 1rem; }
+        ul { justify-content: center; }
+        li { width: 100%; justify-content: flex-start; }
+    }
 
 `
 
 export const CoffeeCardContainer = styled.div`
     display: flex;
-    margin: 2rem 10rem;
+    margin: 2rem 0;
     background-color: ${(props) => props.theme['background']};
     position: relative;
     h1 {
@@ -85,5 +95,16 @@ export const CoffeeCardContainer = styled.div`
         font-family: "baloo 2";
         font-weight: bolder;
         font-size: 32px;  
+    }
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        h1 { position: static; margin-bottom: 1rem; }
+    }
+
+    @media (max-width: 768px) {
+        ul { flex-direction: column; }
+        li { width: 100%; }
+        h1 { font-size: 1.8rem; }
     }
 `

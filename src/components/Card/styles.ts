@@ -12,8 +12,9 @@ export const CoffeeCard = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    width: 256px;
-    height: 310px;
+    width: 100%;
+    max-width: 256px;
+    min-height: 310px;
     gap: 20px;
     background-color: ${(props) => props.theme['base-card']};
     border-radius:0px 40px 0px 40px;
