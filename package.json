@@ -6,6 +6,10 @@
   "scripts": {
     "dev": "vite",
     "dev:server": "json-server db.json -p 3001 -w 500",
+    "start:api": "node server.cjs",
+    "migrate:sql": "node scripts/migrate-db-to-postgres.mjs",
+    "migrate:apply": "node scripts/apply-migration.mjs",
+    "docker:up": "docker-compose up --build -d",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
@@ -18,7 +22,8 @@
     "react-hook-form": "^7.55.0",
     "react-router-dom": "^7.4.0",
     "styled-components": "^6.1.16",
-    "zod": "^3.24.2"
+    "zod": "^3.24.2",
+    "pg": "^8.11.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",

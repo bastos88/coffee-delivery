@@ -32,12 +32,17 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
 
     async function loadTransactions() {
         try {
-        const response = await fetch('http://localhost:3001/transactions')
-        const data = await response.json();
+            // Use environment variable `VITE_API_URL` when provided (production),
+            // fallback to `http://localhost:3001` in dev, otherwise use a local
+            // serverless endpoint at `/api` (works on Vercel without extra env vars).
+            const apiBase = import.meta.env.VITE_API_URL ?? (import.meta.env.DEV ? 'http://localhost:3001' : '/api');
+            const response = await fetch(`${apiBase}/transactions`);
+            const data = await response.json();
 
-        setTransactions(data)}catch(error) {
-    console.error('Erro ao buscar transações:', error)
-  }
+            setTransactions(data);
+        } catch (error) {
+            console.error('Erro ao buscar transações:', error);
+        }
 }
 
 
