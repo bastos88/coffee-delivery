@@ -1,12 +1,13 @@
 import styled from "styled-components";
 
 export const PaymentContainer = styled.div`
-    width: 44rem;
-    height: 13rem;
-    background: ${props => props.theme['base-card']} ;
-    margin-top: 2rem;
-    border-radius: 6px;
-    padding: 40px;
+  width: 100%;
+  max-width: 44rem;
+  min-height: 13rem;
+  background: ${props => props.theme['base-card']} ;
+  margin-top: 2rem;
+  border-radius: 6px;
+  padding: 40px;
     p {
     font-family: "Roboto";
     font-size: 1.125rem;
@@ -48,6 +49,10 @@ export const PaymentOptions = styled.div`
   display: flex;
   margin-top: 2rem;
   gap: 0.75rem;
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+  }
 
   label {
     flex: 1;

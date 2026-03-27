@@ -1,14 +1,23 @@
 import styled from "styled-components";
 
 export const FormContainer = styled.div`
-    width: 44rem;
-    height: 23.25rem;
+    width: 100%;
+    max-width: 44rem;
     background: ${props => props.theme['base-card']} ;
     margin-top: 2rem;
     border-radius: 6px;
+    box-sizing: border-box;
+
+    @media (max-width: 768px) {
+      margin-top: 1rem;
+    }
 `
 export const FormWrapper = styled.div`
     padding: 40px;
+
+    @media (max-width: 480px) {
+      padding: 16px;
+    }
 `
 export const Header = styled.div`
     display: flex;
