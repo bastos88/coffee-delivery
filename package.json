@@ -9,6 +9,7 @@
     "start:api": "node server.cjs",
     "migrate:sql": "node scripts/migrate-db-to-postgres.mjs",
     "migrate:apply": "node scripts/apply-migration.mjs",
+    "docker:up": "docker-compose up --build -d",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"

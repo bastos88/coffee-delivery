@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./db.json:/app/db.json
+    restart: unless-stopped
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - VITE_API_URL=http://api:3001
+    ports:
+      - "8080:80"
+    depends_on:
+      - api
+    restart: unless-stopped
