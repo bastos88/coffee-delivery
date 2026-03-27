@@ -17,21 +17,31 @@ export function Form() {
                     </div>
                 </Header>
                 <AddressForm>
-                    <input type="text" placeholder="CEP" className="cep" />
-                    <input type="text" placeholder="Rua" className="full" />
+                    <label className="sr-only" htmlFor="cep">CEP</label>
+                    <input id="cep" name="cep" type="text" placeholder="CEP" className="cep" />
+
+                    <label className="sr-only" htmlFor="rua">Rua</label>
+                    <input id="rua" name="rua" type="text" placeholder="Rua" className="full" />
 
                     <div className="row">
-                        <input type="text" placeholder="Número" />
+                        <label className="sr-only" htmlFor="numero">Número</label>
+                        <input id="numero" name="numero" type="text" placeholder="Número" />
                         <div className="complemento-wrapper">
-                            <input type="text" placeholder="Complemento" />
-                            <span className="optional">Opcional</span>
+                            <label className="sr-only" htmlFor="complemento">Complemento</label>
+                            <input id="complemento" name="complemento" type="text" placeholder="Complemento" aria-describedby="complemento-optional" />
+                            <span id="complemento-optional" className="optional">Opcional</span>
                         </div>
                     </div>
 
                     <div className="row">
-                        <input type="text" placeholder="Bairro" />
-                        <input type="text" placeholder="Cidade" />
-                        <input type="text" placeholder="UF" className="uf" />
+                        <label className="sr-only" htmlFor="bairro">Bairro</label>
+                        <input id="bairro" name="bairro" type="text" placeholder="Bairro" />
+
+                        <label className="sr-only" htmlFor="cidade">Cidade</label>
+                        <input id="cidade" name="cidade" type="text" placeholder="Cidade" />
+
+                        <label className="sr-only" htmlFor="uf">UF</label>
+                        <input id="uf" name="uf" type="text" placeholder="UF" className="uf" />
                     </div>
                 </AddressForm>
             </FormWrapper>

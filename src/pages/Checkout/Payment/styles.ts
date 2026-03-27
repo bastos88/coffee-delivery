@@ -70,18 +70,35 @@ export const PaymentOptions = styled.div`
     cursor: pointer;
     border: 1px solid transparent;
     transition: 0.2s;
-
     &.active {
-    background: #ebe5f9;
-    border: 1px solid #8047f8;
-  }
+      background: #ebe5f9;
+      border: 1px solid #8047f8;
+    }
+
+    /* keep inputs accessible but visually hidden so keyboard/AT can reach them */
     input {
-      display: none;
+      position: absolute;
+      opacity: 0;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      padding: 0;
+      border: 0;
+      clip: rect(0 0 0 0);
+      clip-path: inset(50%);
+      overflow: hidden;
+      white-space: nowrap;
     }
 
     &:has(input:checked) {
       background: #ebe5f9;
       border: 1px solid #8047f8;
+    }
+
+    /* show focus ring when the internal input is focused */
+    &:focus-within {
+      box-shadow: 0 0 0 3px rgba(128,71,248,0.12);
+      border-color: #8047f8;
     }
 
     svg {
