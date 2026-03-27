@@ -60,7 +60,7 @@ gap: 1rem;
 .cep {
     width: 200px;
     max-width: 200px;
-    flex: 0 0 200px;
+    flex: 0 0 60;
     box-sizing: border-box;
   }
 
@@ -102,7 +102,7 @@ gap: 1rem;
 
   @media (max-width: 480px) {
     .row { flex-direction: column; align-items: stretch; gap: 0.5rem; }
-    .cep { width: 120px; max-width: 120px; flex: 0 0 120px; }
+    .cep { width: 60px; max-width: 60px; flex: 0 0 60px; }
     .uf { width: 60px; max-width: 60px; flex: 0 0 60px; }
     input:not(.cep):not(.uf) { width: 100%; }
   }
