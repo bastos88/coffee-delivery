@@ -6,6 +6,13 @@ export const CardContainer = styled.div`
     display: flex;
     flex-wrap: wrap;
     gap: 3rem;
+    justify-content: center;
+    align-items: flex-start;
+
+    @media (max-width: 768px) {
+        gap: 1.5rem;
+        padding-top: 16px;
+    }
 `
 
 export const CoffeeCard = styled.div`
