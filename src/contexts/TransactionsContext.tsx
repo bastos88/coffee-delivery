@@ -32,12 +32,16 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
 
     async function loadTransactions() {
         try {
-        const response = await fetch('http://localhost:3001/transactions')
-        const data = await response.json();
+            // Use environment variable `VITE_API_URL` when provided (production),
+            // fallback to localhost:3001 for local development.
+            const apiBase = import.meta.env.VITE_API_URL ?? 'http://localhost:3001';
+            const response = await fetch(`${apiBase}/transactions`);
+            const data = await response.json();
 
-        setTransactions(data)}catch(error) {
-    console.error('Erro ao buscar transações:', error)
-  }
+            setTransactions(data);
+        } catch (error) {
+            console.error('Erro ao buscar transações:', error);
+        }
 }
 
 
