@@ -52,3 +52,20 @@ Observações:
 
 - Depois de migrar os dados, atualize a API do frontend para apontar para o banco se for criar uma API (ou continue a usar `json-server` hospedado).  
 - Se pretende usar Supabase em produção, considere criar tabelas e permissões adequadas e não guardar dados sensíveis sem proteção.
+
+### Aplicar com script Node (`migrate:apply`)
+
+Se preferir, você pode aplicar o SQL diretamente a partir do repositório usando o script Node que usa a variável `DATABASE_URL`:
+
+```bash
+# exporte a DATABASE_URL (ou configure no CI)
+export DATABASE_URL="postgresql://<user>:<password>@<host>:5432/<db>?sslmode=require"
+
+# gerar o SQL (opcional se já existir)
+npm run migrate:sql
+
+# aplicar o SQL usando o script (gera migrate.sql se necessário)
+npm run migrate:apply
+```
+
+O script `migrate:apply` usa a dependência `pg` para conectar-se ao banco e executar os comandos do arquivo `migrate.sql`.
