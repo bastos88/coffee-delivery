@@ -20,7 +20,13 @@ export function Payment() {
                     className={selectedMethod === "credit" ? "active" : ""}
                     onClick={() => setSelectedMethod("credit")}
                 >
-                    <input type="radio" value="credit" checked={selectedMethod === "credit"} readOnly />
+                    <input
+                        type="radio"
+                        name="payment"
+                        value="credit"
+                        checked={selectedMethod === "credit"}
+                        onChange={() => setSelectedMethod("credit")}
+                    />
                     <CreditCard size={16} />
                     CARTÃO DE CRÉDITO
                 </label>
@@ -29,7 +35,13 @@ export function Payment() {
                     className={selectedMethod === "debit" ? "active" : ""}
                     onClick={() => setSelectedMethod("debit")}
                 >
-                    <input type="radio" value="debit" checked={selectedMethod === "debit"} readOnly />
+                    <input
+                        type="radio"
+                        name="payment"
+                        value="debit"
+                        checked={selectedMethod === "debit"}
+                        onChange={() => setSelectedMethod("debit")}
+                    />
                     <Bank size={16} />
                     CARTÃO DE DÉBITO
                 </label>
@@ -38,7 +50,13 @@ export function Payment() {
                     className={selectedMethod === "money" ? "active" : ""}
                     onClick={() => setSelectedMethod("money")}
                 >
-                    <input type="radio" value="money" checked={selectedMethod === "money"} readOnly />
+                    <input
+                        type="radio"
+                        name="payment"
+                        value="money"
+                        checked={selectedMethod === "money"}
+                        onChange={() => setSelectedMethod("money")}
+                    />
                     <Money size={16} />
                     DINHEIRO
                 </label>

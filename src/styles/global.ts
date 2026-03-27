@@ -14,8 +14,9 @@ body {
 
 body,input,textarea,button {
     font-family: 'Roboto', sans-serif;
-    font-weight: bold;
+    font-weight: 400;
     font-size: 1rem;
+    line-height: 1.4;
     -webkit-font-smoothing:antialiased;
 }
 `
