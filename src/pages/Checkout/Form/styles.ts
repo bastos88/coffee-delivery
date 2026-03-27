@@ -58,8 +58,10 @@ gap: 1rem;
     min-width: 0;
 }
 .cep {
+    width: 200px;
     max-width: 200px;
     flex: 0 0 200px;
+    box-sizing: border-box;
   }
 
   .full {
@@ -100,8 +102,9 @@ gap: 1rem;
 
   @media (max-width: 480px) {
     .row { flex-direction: column; align-items: stretch; gap: 0.5rem; }
-    .cep, .uf { max-width: none; flex: 1 1 100%; }
-    input { width: 100%; }
+    .cep { width: 120px; max-width: 120px; flex: 0 0 120px; }
+    .uf { width: 60px; max-width: 60px; flex: 0 0 60px; }
+    input:not(.cep):not(.uf) { width: 100%; }
   }
 `
 
