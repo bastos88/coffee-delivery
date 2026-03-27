@@ -7,6 +7,7 @@
     "dev": "vite",
     "dev:server": "json-server db.json -p 3001 -w 500",
     "start:api": "node server.cjs",
+    "migrate:sql": "node scripts/migrate-db-to-postgres.mjs",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
