@@ -33,8 +33,9 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
     async function loadTransactions() {
         try {
             // Use environment variable `VITE_API_URL` when provided (production),
-            // fallback to localhost:3001 for local development.
-            const apiBase = import.meta.env.VITE_API_URL ?? 'http://localhost:3001';
+            // fallback to `http://localhost:3001` in dev, otherwise use a local
+            // serverless endpoint at `/api` (works on Vercel without extra env vars).
+            const apiBase = import.meta.env.VITE_API_URL ?? (import.meta.env.DEV ? 'http://localhost:3001' : '/api');
             const response = await fetch(`${apiBase}/transactions`);
             const data = await response.json();
 
