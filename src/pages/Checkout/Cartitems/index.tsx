@@ -11,15 +11,11 @@ export function CartItems() {
         (transaction) => (counts[Number(transaction.id)] || 0) > 0
     );
 
-    console.log("selectedCoffees", selectedCoffees); // debug útil
-
     return (
-        <div style={{ width: "100%", maxWidth: "28rem" }}>
-            <SelectedCoffeeList>
-                {selectedCoffees.map((coffee) => (
-                    <CartDetail key={coffee.id} coffeeId={Number(coffee.id)} />
-                ))}
-            </SelectedCoffeeList>
-        </div>
+        <SelectedCoffeeList>
+            {selectedCoffees.map((coffee) => (
+                <CartDetail key={coffee.id} coffeeId={Number(coffee.id)} />
+            ))}
+        </SelectedCoffeeList>
     );
 }
