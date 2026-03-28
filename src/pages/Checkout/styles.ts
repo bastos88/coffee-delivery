@@ -18,6 +18,7 @@ export const CheckOutContainer = styled.section`
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
     min-height: auto;
-    gap: 1rem;
+    gap: 0.75rem;
+    margin: 2rem 0;
   }
 `

@@ -46,4 +46,18 @@ export const HeaderContainer = styled.header`
             gap: 0.5rem;
         }
     }
+
+    @media (max-width: 480px) {
+        margin: 0.5rem 0;
+        nav {
+            gap: 0.25rem;
+        }
+        nav a:first-child {
+            padding: 0.35rem 0.5rem;
+            font-size: 0.8rem;
+        }
+        nav a:last-child {
+            padding: 0.3rem;
+        }
+    }
 `

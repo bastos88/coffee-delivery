@@ -11,6 +11,10 @@ export const FormContainer = styled.div`
     @media (max-width: 768px) {
       margin-top: 1rem;
     }
+
+    @media (max-width: 480px) {
+      margin-top: 0.75rem;
+    }
 `
 export const FormWrapper = styled.div`
     padding: 40px;
@@ -129,6 +133,7 @@ gap: 1rem;
     .uf { width: 60px; max-width: 60px; flex: 0 0 60px; }
     input:not(.cep):not(.uf) { width: 100%; }
     input { font-size: 1rem; }
+    margin-top: 1rem;
   }
 `
 

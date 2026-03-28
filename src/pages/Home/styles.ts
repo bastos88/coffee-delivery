@@ -75,6 +75,7 @@ export const IntroContainer = styled.div`
     @media (max-width: 768px) {
         flex-direction: column;
         text-align: center;
+        margin: 2rem 0;
         h1 { font-size: 2rem; }
         span { font-size: 0.95rem; }
         img { max-width: 100%; height: auto; margin-top: 1rem; }

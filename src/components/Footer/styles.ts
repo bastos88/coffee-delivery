@@ -17,4 +17,10 @@ export const FooterContainer = styled.footer`
     padding: 1rem 0;
     font-size: 0.85rem;
   }
+
+  @media (max-width: 480px) {
+    margin-top: 1rem;
+    padding: 0.75rem 0;
+    font-size: 0.8rem;
+  }
 `;

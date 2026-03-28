@@ -8,6 +8,11 @@ export const PaymentContainer = styled.div`
   margin-top: 2rem;
   border-radius: 6px;
   padding: 40px;
+  @media (max-width: 480px) {
+    padding: 16px;
+    margin-top: 1rem;
+    min-height: 10rem;
+  }
     p {
     font-family: "Roboto";
     font-size: 1.125rem;
