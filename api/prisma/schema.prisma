@@ -1,0 +1,46 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Coffee {
+  id          String   @id @default(uuid())
+  name        String
+  description String
+  price       Decimal
+  image       String
+  tags        String[]
+  createdAt   DateTime @default(now())
+  orderItems  OrderItem[]
+}
+
+model Order {
+  id             String      @id @default(uuid())
+  cep            String
+  street         String
+  number         String
+  complement     String?
+  neighborhood   String
+  city           String
+  uf             String
+  paymentMethod  String
+  total          Decimal
+  createdAt      DateTime    @default(now())
+  items          OrderItem[]
+}
+
+model OrderItem {
+  id        String  @id @default(uuid())
+  coffeeId  String
+  orderId   String
+  quantity  Int
+  price     Decimal
+  coffee    Coffee  @relation(fields: [coffeeId], references: [id])
+  order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  @@index([coffeeId])
+  @@index([orderId])
+}

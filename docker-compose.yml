@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: coffee-delivery-db
+    ports:
+      - "5433:5433"
+    environment:
+      POSTGRES_USER: coffee
+      POSTGRES_PASSWORD: coffee123
+      POSTGRES_DB: coffee_delivery
+    volumes:
+      - coffee_delivery_data:/var/lib/postgresql/data
+
+volumes:
+  coffee_delivery_data:
