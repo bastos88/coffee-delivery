@@ -18,6 +18,8 @@ interface TransactionContextType {
     totalItems: number;
     setCount: React.Dispatch<React.SetStateAction<{ [id: number]: number }>>;
     addToCart: (id: number, quantity: number) => void;
+    cartAnimationKey: number;
+    triggerCartAnimation: () => void;
 }
 
 interface TransactionsProviderProps {
@@ -29,6 +31,7 @@ export const TransactionsContext = createContext({} as TransactionContextType)
 export function TransactionsProvider({ children }: TransactionsProviderProps) {
     const [transactions, setTransactions] = useState<Transaction[]>([])
     const [counts, setCount] = useState<{ [id: number]: number }>({});
+    const [cartAnimationKey, setCartAnimationKey] = useState(0);
 
     async function loadTransactions() {
         try {
@@ -79,13 +82,18 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
                 ...prev,
                 [id]: (prev[id] || 0) + quantity,
             }));
+            triggerCartAnimation();
         }
+    }
+
+    function triggerCartAnimation() {
+        setCartAnimationKey((k) => k + 1);
     }
 
 
 
     return (
-        <TransactionsContext.Provider value={{ transactions, counts, decrementCount, incrementCount, total, totalItems, setCount, addToCart }}>
+        <TransactionsContext.Provider value={{ transactions, counts, decrementCount, incrementCount, total, totalItems, setCount, addToCart, cartAnimationKey, triggerCartAnimation }}>
             {children}
         </TransactionsContext.Provider>
     )

@@ -40,6 +40,32 @@ export const HeaderContainer = styled.header`
         margin-left: 0.25rem;
     }
 
+        /* cart shake animation */
+        @keyframes cart-shake {
+            0% { transform: translateX(0) rotate(0) scale(1); }
+            10% { transform: translateX(-6px) rotate(-8deg) scale(1.06); }
+            30% { transform: translateX(6px) rotate(8deg); }
+            50% { transform: translateX(-4px) rotate(-4deg); }
+            70% { transform: translateX(2px) rotate(2deg); }
+            100% { transform: translateX(0) rotate(0) scale(1); }
+        }
+
+        nav a:last-child svg.shake {
+            animation: cart-shake 640ms cubic-bezier(.36,.07,.19,.97);
+            transform-origin: center;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            nav a:last-child svg.shake {
+                animation: none;
+            }
+        }
+
+        nav a:last-child .cart-count {
+            margin-left: 0.25rem;
+            font-weight: 700;
+        }
+
     @media (max-width: 768px) {
         margin: 1rem 0;
         nav {
