@@ -1,6 +1,7 @@
 import { ReactNode, useEffect, useState } from "react";
 import { TransactionsContext } from "./transactionsContext";
 import type { Coffee } from "../types/order";
+import { apiBaseUrl } from "../utils/api";
 
 interface TransactionsProviderProps {
   children: ReactNode;
@@ -12,7 +13,7 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
 
   async function loadTransactions() {
     try {
-      const response = await fetch("http://localhost:3333/coffees");
+      const response = await fetch(`${apiBaseUrl}/coffees`);
       const data = await response.json();
 
       setTransactions(data);

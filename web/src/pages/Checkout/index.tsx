@@ -10,9 +10,11 @@ import {
 import { TransactionsContext } from "../../contexts/transactionsContext";
 import type {
   AddressFormData,
+  CreateOrderPayload,
   PaymentDetailsFormData,
   PaymentMethod,
 } from "../../types/order";
+import { apiBaseUrl } from "../../utils/api";
 
 const initialAddress: AddressFormData = {
   cep: "",
@@ -156,7 +158,7 @@ export function Checkout() {
       return;
     }
 
-    const payload = {
+    const payload: CreateOrderPayload = {
       cep: address.cep.trim(),
       street: address.street.trim(),
       number: address.number.trim(),
@@ -170,7 +172,7 @@ export function Checkout() {
     try {
       setIsSubmitting(true);
 
-      const response = await fetch("http://localhost:3333/orders", {
+      const response = await fetch(`${apiBaseUrl}/orders`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
