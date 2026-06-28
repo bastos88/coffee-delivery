@@ -11,7 +11,6 @@ import {
 import coffeeIntro from '../../assets/coffee-delivery.png'
 import { Card } from "../../components/Card"
 import { Link } from "react-router-dom"
-import { Footer } from "../../components/Footer";
 
 const steps = [
     {
@@ -276,7 +275,6 @@ export function Home() {
                     <img src="/imgs/delivery.png" alt="Entregador levando café em uma scooter" />
                 </div>
             </PremiumCtaSection>
-            <Footer />
         </>
     )
 }

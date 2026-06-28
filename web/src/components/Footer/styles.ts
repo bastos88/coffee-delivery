@@ -3,7 +3,9 @@ import { Link } from "react-router-dom";
 
 export const FooterContainer = styled.footer`
   position: relative;
-  overflow: hidden;
+  overflow: clip;
+  width: 100%;
+  max-width: 100vw;
   padding: clamp(4rem, 8vw, 7rem) 1.5rem 1.5rem;
   background:
     radial-gradient(circle at 8% 0%, rgba(219, 172, 44, 0.16), transparent 24rem),
@@ -21,6 +23,10 @@ export const FooterContainer = styled.footer`
     opacity: 0.16;
   }
 
+  @supports not (overflow: clip) {
+    overflow: hidden;
+  }
+
   .footer-glow-left {
     top: -13rem;
     left: -10rem;
@@ -31,6 +37,12 @@ export const FooterContainer = styled.footer`
     right: -11rem;
     bottom: -16rem;
     background: #8047f8;
+  }
+
+  @media (max-width: 640px) {
+    .footer-glow {
+      display: none;
+    }
   }
 `;
 

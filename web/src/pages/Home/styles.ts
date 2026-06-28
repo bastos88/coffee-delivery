@@ -80,6 +80,7 @@ export const StepCard = styled.article<{ $status: StepStatus }>`
 
 export const IntroContainer = styled.section`
   position: relative;
+  overflow: hidden;
   scroll-margin-top: 7rem;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(18rem, 31rem);
@@ -824,44 +825,3 @@ export const PremiumCtaSection = styled.section`
   }
 `;
 
-export const FooterContainer = styled.footer`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
-  width: 100%;
-  margin: 0;
-  padding: 2rem max(1rem, calc((100% - 75rem) / 2)) 2.5rem;
-  border-top: 1px solid rgba(87, 79, 77, 0.08);
-  background: ${(props) => props.theme["section-beige-dark"]};
-  color: ${(props) => props.theme["base-text"]};
-
-  strong {
-    display: block;
-    margin-bottom: 0.25rem;
-    color: ${(props) => props.theme["base-subtitle"]};
-    font-family: "Baloo 2", cursive;
-    font-size: 1.35rem;
-    line-height: 1;
-  }
-
-  p {
-    max-width: 34rem;
-    color: ${(props) => props.theme["base-label"]};
-    font-size: 0.9rem;
-    line-height: 1.5;
-  }
-
-  > span {
-    flex: 0 0 auto;
-    color: ${(props) => props.theme["purple-dark"]};
-    font-size: 0.875rem;
-    font-weight: 700;
-  }
-
-  @media (max-width: 640px) {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
-  }
-`;

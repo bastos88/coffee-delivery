@@ -14,6 +14,7 @@ import type {
     PaymentDetailsFormData,
     PaymentMethod,
 } from '../../types/order';
+import { apiBaseUrl } from '../../utils/api';
 
 const initialAddress: AddressFormData = {
     cep: "",
@@ -161,7 +162,7 @@ export function Checkout() {
         try {
             setIsSubmitting(true);
 
-            const response = await fetch("http://localhost:3333/orders", {
+            const response = await fetch(`${apiBaseUrl}/orders`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
