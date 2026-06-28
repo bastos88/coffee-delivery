@@ -12,7 +12,7 @@ import {
 import coffeeLogo from "../../assets/coffee-logo.svg";
 import { List, MapPin, ShoppingCart, X } from "phosphor-react"
 import { useContext, useEffect, useRef, useState } from "react"
-import { TransactionsContext } from "../../contexts/TransactionsContext"
+import { TransactionsContext } from "../../contexts/transactionsContext"
 import { Link } from "react-router-dom"
 export function Header() {
     const { totalItems } = useContext(TransactionsContext)

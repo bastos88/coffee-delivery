@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Button, Count, CounterContainer } from "./styles";
-import { TransactionsContext } from "../../contexts/TransactionsContext";
+import { TransactionsContext } from "../../contexts/transactionsContext";
 
 interface CounterButtonProps {
   count?: number;

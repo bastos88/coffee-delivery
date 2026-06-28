@@ -10,7 +10,7 @@ import {
 
 import { Check, ShoppingCart } from "phosphor-react";
 import { useContext, useState } from "react";
-import { TransactionsContext } from "../../contexts/TransactionsContext";
+import { TransactionsContext } from "../../contexts/transactionsContext";
 import { CounterButton } from "../CounterButton";
 import { formatCurrency } from "../../utils/formatCurrency";
 

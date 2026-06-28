@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import type { ReactNode } from "react";
-import { TransactionsContext } from "../../../contexts/TransactionsContext";
+import { TransactionsContext } from "../../../contexts/transactionsContext";
 import { CartDetail } from "../../../components/CartDetail";
 import { formatCurrency } from "../../../utils/formatCurrency";
 import {

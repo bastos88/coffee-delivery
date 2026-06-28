@@ -3,7 +3,7 @@ services:
     image: postgres:16
     container_name: coffee-delivery-db
     ports:
-      - "5433:5433"
+      - "5433:5432"
     environment:
       POSTGRES_USER: coffee
       POSTGRES_PASSWORD: coffee123

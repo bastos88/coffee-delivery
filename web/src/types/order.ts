@@ -20,7 +20,6 @@ export interface AddressFormData {
   complement: string;
   neighborhood: string;
   city: string;
-  uf: string;
 }
 
 export interface PaymentDetailsFormData {
@@ -36,7 +35,13 @@ export interface CartItemPayload {
   quantity: number;
 }
 
-export interface CreateOrderPayload extends AddressFormData {
+export interface CreateOrderPayload {
+  cep: string;
+  street: string;
+  number: string;
+  complement: string;
+  neighborhood: string;
+  city: string;
   paymentMethod: PaymentMethod;
   items: CartItemPayload[];
 }

@@ -1,22 +1,10 @@
-import { createContext, ReactNode, useEffect, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
+import { TransactionsContext } from "./transactionsContext";
 import type { Coffee } from "../types/order";
-
-interface TransactionsContextType {
-  transactions: Coffee[];
-  counts: { [id: string]: number };
-  incrementCount: (id: string) => void;
-  decrementCount: (id: string) => void;
-  total: number;
-  totalItems: number;
-  setCount: React.Dispatch<React.SetStateAction<{ [id: string]: number }>>;
-  addToCart: (id: string, quantity: number) => void;
-}
 
 interface TransactionsProviderProps {
   children: ReactNode;
 }
-
-export const TransactionsContext = createContext({} as TransactionsContextType);
 
 export function TransactionsProvider({ children }: TransactionsProviderProps) {
   const [transactions, setTransactions] = useState<Coffee[]>([]);
