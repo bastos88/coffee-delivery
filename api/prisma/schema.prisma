@@ -7,39 +7,46 @@ datasource db {
 }
 
 model Coffee {
-  id          String   @id @default(uuid())
+  id          String      @id @default(uuid())
   name        String
   description String
   price       Decimal
   image       String
   tags        String[]
-  createdAt   DateTime @default(now())
+  createdAt   DateTime    @default(now())
   orderItems  OrderItem[]
 }
 
+enum PaymentMethod {
+  MB_WAY
+  MULTIBANCO
+  CARD
+  CASH_ON_DELIVERY
+}
+
 model Order {
-  id             String      @id @default(uuid())
-  cep            String
-  street         String
-  number         String
-  complement     String?
-  neighborhood   String
-  city           String
-  uf             String
-  paymentMethod  String
-  total          Decimal
-  createdAt      DateTime    @default(now())
-  items          OrderItem[]
+  id            String        @id @default(cuid())
+  cep           String
+  street        String
+  number        String
+  complement    String?
+  neighborhood  String
+  city          String
+  paymentMethod PaymentMethod
+  total         Decimal
+  createdAt     DateTime      @default(now())
+
+  items OrderItem[]
 }
 
 model OrderItem {
-  id        String  @id @default(uuid())
-  coffeeId  String
-  orderId   String
-  quantity  Int
-  price     Decimal
-  coffee    Coffee  @relation(fields: [coffeeId], references: [id])
-  order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  id       String  @id @default(uuid())
+  coffeeId String
+  orderId  String
+  quantity Int
+  price    Decimal
+  coffee   Coffee  @relation(fields: [coffeeId], references: [id])
+  order    Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
 
   @@index([coffeeId])
   @@index([orderId])

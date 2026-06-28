@@ -7,12 +7,17 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.get("/coffees", async (req, res) => {
+app.get("/coffees", async (_req, res) => {
   const coffees = await prisma.coffee.findMany();
+
   return res.json(coffees);
 });
 
-type PaymentMethod = "MB_WAY" | "MULTIBANCO" | "CARD" | "CASH_ON_DELIVERY";
+type PaymentMethod =
+  | "MB_WAY"
+  | "MULTIBANCO"
+  | "CARD"
+  | "CASH_ON_DELIVERY";
 
 interface CreateOrderItemRequest {
   coffeeId: string;
@@ -20,15 +25,14 @@ interface CreateOrderItemRequest {
 }
 
 interface CreateOrderRequest {
-  cep?: string;
-  street?: string;
-  number?: string;
+  cep: string;
+  street: string;
+  number: string;
   complement?: string;
-  neighborhood?: string;
-  city?: string;
-  uf?: string;
-  paymentMethod?: PaymentMethod;
-  items?: CreateOrderItemRequest[];
+  neighborhood: string;
+  city: string;
+  paymentMethod: PaymentMethod;
+  items: CreateOrderItemRequest[];
 }
 
 const paymentMethods: PaymentMethod[] = [
@@ -50,7 +54,6 @@ app.post("/orders", async (req, res) => {
     complement,
     neighborhood,
     city,
-    uf,
     paymentMethod,
     items,
   } = req.body as CreateOrderRequest;
@@ -61,7 +64,6 @@ app.post("/orders", async (req, res) => {
     isBlank(number) ||
     isBlank(neighborhood) ||
     isBlank(city) ||
-    isBlank(uf) ||
     !paymentMethod ||
     !paymentMethods.includes(paymentMethod)
   ) {
@@ -70,7 +72,7 @@ app.post("/orders", async (req, res) => {
     });
   }
 
-  if (!items || items.length === 0) {
+  if (!Array.isArray(items) || items.length === 0) {
     return res.status(400).json({
       message: "O pedido precisa ter ao menos um item.",
     });
@@ -80,7 +82,7 @@ app.post("/orders", async (req, res) => {
     (item) =>
       isBlank(item.coffeeId) ||
       !Number.isInteger(item.quantity) ||
-      item.quantity <= 0
+      item.quantity <= 0,
   );
 
   if (hasInvalidItem) {
@@ -90,6 +92,7 @@ app.post("/orders", async (req, res) => {
   }
 
   const coffeeIds = [...new Set(items.map((item) => item.coffeeId))];
+
   const coffees = await prisma.coffee.findMany({
     where: {
       id: {
@@ -104,56 +107,67 @@ app.post("/orders", async (req, res) => {
     });
   }
 
-  const orderAddress = {
-    cep: cep!.trim(),
-    street: street!.trim(),
-    number: number!.trim(),
-    complement: complement?.trim() || null,
-    neighborhood: neighborhood!.trim(),
-    city: city!.trim(),
-    uf: uf!.trim(),
-  };
+  const coffeesById = new Map(
+    coffees.map((coffee) => [coffee.id, coffee]),
+  );
 
-  const coffeesById = new Map(coffees.map((coffee) => [coffee.id, coffee]));
-
-  const total = items.reduce((acc, item) => {
+  const total = items.reduce<number>((accumulator, item) => {
     const coffee = coffeesById.get(item.coffeeId);
-    if (!coffee) return acc;
 
-    return acc + Number(coffee.price) * item.quantity;
+    if (!coffee) {
+      return accumulator;
+    }
+
+    return accumulator + Number(coffee.price) * item.quantity;
   }, 0);
 
-  const order = await prisma.order.create({
-    data: {
-      ...orderAddress,
-      paymentMethod,
-      total,
-      items: {
-        create: items.map((item) => {
-          const coffee = coffeesById.get(item.coffeeId);
+  try {
+    const order = await prisma.order.create({
+      data: {
+        cep: cep.trim(),
+        street: street.trim(),
+        number: number.trim(),
+        complement: complement?.trim() || null,
+        neighborhood: neighborhood.trim(),
+        city: city.trim(),
+        paymentMethod,
+        total,
+        items: {
+          create: items.map((item) => {
+            const coffee = coffeesById.get(item.coffeeId);
 
-          if (!coffee) {
-            throw new Error("Coffee not found after validation.");
-          }
+            if (!coffee) {
+              throw new Error("Café não encontrado após validação.");
+            }
 
-          return {
-            coffeeId: item.coffeeId,
-            quantity: item.quantity,
-            price: coffee.price,
-          };
-        }),
-      },
-    },
-    include: {
-      items: {
-        include: {
-          coffee: true,
+            return {
+              coffeeId: item.coffeeId,
+              quantity: item.quantity,
+              price: coffee.price,
+            };
+          }),
         },
       },
-    },
-  });
+      include: {
+        items: {
+          include: {
+            coffee: true,
+          },
+        },
+      },
+    });
 
-  return res.status(201).json(order);
+    return res.status(201).json(order);
+  } catch (error) {
+    console.error("Erro ao criar pedido:", error);
+
+    return res.status(500).json({
+      message:
+        error instanceof Error
+          ? error.message
+          : "Erro interno ao criar o pedido.",
+    });
+  }
 });
 
 app.listen(3333, () => {

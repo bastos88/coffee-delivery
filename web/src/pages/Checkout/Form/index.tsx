@@ -42,7 +42,7 @@ export function Form({
         <AddressForm>
           <input
             type="text"
-            placeholder="CEP"
+            placeholder="Código Postal"
             className="cep"
             value={address.cep}
             onChange={(event) => onChangeAddress("cep", event.target.value)}
@@ -81,7 +81,7 @@ export function Form({
           <div className="row">
             <input
               type="text"
-              placeholder="Bairro"
+              placeholder="Zona"
               value={address.neighborhood}
               onChange={(event) =>
                 onChangeAddress("neighborhood", event.target.value)
@@ -92,13 +92,6 @@ export function Form({
               placeholder="Cidade"
               value={address.city}
               onChange={(event) => onChangeAddress("city", event.target.value)}
-            />
-            <input
-              type="text"
-              placeholder="UF"
-              className="uf"
-              value={address.uf}
-              onChange={(event) => onChangeAddress("uf", event.target.value)}
             />
           </div>
         </AddressForm>
