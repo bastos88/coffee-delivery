@@ -1,23 +1,15 @@
-version: '3.8'
 services:
-  api:
-    build:
-      context: .
-      dockerfile: Dockerfile.api
+  postgres:
+    image: postgres:16
+    container_name: coffee-delivery-db
     ports:
-      - "3001:3001"
+      - "5433:5433"
+    environment:
+      POSTGRES_USER: coffee
+      POSTGRES_PASSWORD: coffee123
+      POSTGRES_DB: coffee_delivery
     volumes:
-      - ./db.json:/app/db.json
-    restart: unless-stopped
+      - coffee_delivery_data:/var/lib/postgresql/data
 
-  web:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      args:
-        - VITE_API_URL=http://api:3001
-    ports:
-      - "8080:80"
-    depends_on:
-      - api
-    restart: unless-stopped
+volumes:
+  coffee_delivery_data:
