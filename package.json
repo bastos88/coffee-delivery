@@ -5,25 +5,19 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "dev:server": "json-server db.json -p 3001 -w 500",
-    "start:api": "node server.cjs",
-    "migrate:sql": "node scripts/migrate-db-to-postgres.mjs",
-    "migrate:apply": "node scripts/apply-migration.mjs",
-    "docker:up": "docker-compose up --build -d",
+    "dev:api": "npm --prefix api run dev",
+    "db:up": "docker compose up -d postgres",
+    "db:migrate": "npm --prefix api run prisma -- migrate dev",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
-    "json-server": "^1.0.0-beta.3",
     "phosphor-react": "^1.4.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-hook-form": "^7.55.0",
     "react-router-dom": "^7.4.0",
-    "styled-components": "^6.1.16",
-    "zod": "^3.24.2",
-    "pg": "^8.11.0"
+    "styled-components": "^6.1.16"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
@@ -35,7 +29,6 @@
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^15.15.0",
-    "playwright": "^1.58.2",
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.24.1",
     "vite": "^6.2.0"
