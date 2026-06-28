@@ -4,7 +4,7 @@ React + TypeScript frontend with an Express/Prisma API backed by Postgres.
 
 ## Run locally
 
-Start Postgres:
+Start Postgres with Docker:
 
 ```bash
 npm run db:up
